@@ -91,6 +91,8 @@ def demo(configs):
             queue_frames.append(frame_pred_infor)
 
             frame_idx += 1
+            if frame_idx > video_loader.video_num_frames - video_loader.num_frames_sequence - 1:
+                break
             print('Done frame_idx {} - time {:.3f}s'.format(frame_idx, t2 - t1))
 
     if configs.output_format == 'video':

@@ -1,5 +1,7 @@
 # TTNet-Pytorch
 
+Forked version: includes some little changes.
+
 [![python-image]][python-url]
 [![pytorch-image]][pytorch-url]
 

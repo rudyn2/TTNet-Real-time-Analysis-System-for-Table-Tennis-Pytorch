@@ -263,7 +263,7 @@ def parse_configs():
         make_folder(configs.saved_dir)
 
     if configs.save_demo_output:
-        configs.save_demo_dir = os.path.join(configs.results_dir, 'demo', configs.saved_fn)
+        configs.save_demo_dir = os.path.join(configs.results_dir, configs.saved_fn)
         make_folder(configs.save_demo_dir)
 
     return configs
