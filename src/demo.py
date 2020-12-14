@@ -52,6 +52,7 @@ def demo(configs):
     w_resize, h_resize = 320, 128
     w_ratio = w_original / w_resize
     h_ratio = h_original / h_resize
+    ball_preds = []
     with torch.no_grad():
         for count, resized_imgs in video_loader:
             # take the middle one
@@ -68,6 +69,7 @@ def demo(configs):
                 int(prediction_global[0] * w_ratio + prediction_local[0] - w_resize / 2),
                 int(prediction_global[1] * h_ratio + prediction_local[1] - h_resize / 2)
             ]
+            ball_preds.append(prediction_ball_final)
 
             # Get infor of the (middle_idx + 1)th frame
             if len(queue_frames) == middle_idx + 1:
@@ -94,6 +96,8 @@ def demo(configs):
             if frame_idx > video_loader.video_num_frames - video_loader.num_frames_sequence - 1:
                 break
             print('Done frame_idx {} - time {:.3f}s'.format(frame_idx, t2 - t1))
+
+
 
     if configs.output_format == 'video':
         output_video_path = os.path.join(configs.save_demo_dir, 'result.mp4')

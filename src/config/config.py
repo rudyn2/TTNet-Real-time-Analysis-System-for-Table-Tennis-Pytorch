@@ -169,6 +169,8 @@ def parse_configs():
     ####################################################################
     parser.add_argument('--video_path', type=str, default=None, metavar='PATH',
                         help='the path of the video that needs to demo')
+    parser.add_argument('--metrics_output', type=str, default='text', metavar='PATH',
+                        help='the path of the video metrics')
     parser.add_argument('--output_format', type=str, default='text', metavar='PATH',
                         help='the type of the demo output')
     parser.add_argument('--show_image', action='store_true',
