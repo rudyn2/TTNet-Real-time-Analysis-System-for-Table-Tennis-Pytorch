@@ -161,7 +161,7 @@ class Segmentation(nn.Module):
 
 
 class TTNet(nn.Module):
-    def __init__(self, dropout_p, tasks, input_size, thresh_ball_pos_mask, num_frames_sequence,
+    def __init__(self, dropout_p, tasks, input_size, thresh_ball_pos_mask, num_frames_sequence, device,
                  mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225)):
         super(TTNet, self).__init__()
         self.tasks = tasks
@@ -178,6 +178,7 @@ class TTNet(nn.Module):
         self.thresh_ball_pos_mask = thresh_ball_pos_mask
         self.mean = torch.repeat_interleave(torch.tensor(mean).view(1, 3, 1, 1), repeats=9, dim=1)
         self.std = torch.repeat_interleave(torch.tensor(std).view(1, 3, 1, 1), repeats=9, dim=1)
+        self.device = device
 
     def forward(self, resize_batch_input, org_ball_pos_xy):
         """Forward propagation
@@ -220,7 +221,7 @@ class TTNet(nn.Module):
         return pred_ball_global, pred_ball_local, pred_events, pred_seg
 
     def __normalize__(self, x):
-        if not self.mean.is_cuda:
+        if not self.mean.is_cuda and self.device == 'cuda':
             self.mean = self.mean.cuda()
             self.std = self.std.cuda()
 
