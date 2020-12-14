@@ -27,7 +27,7 @@ from utils.misc import time_synchronized
 
 
 def demo(configs):
-    video_loader = TTNet_Video_Loader(configs.video_path, configs.input_size, configs.num_frames_sequence, configs.raw_device)
+    video_loader = TTNet_Video_Loader(configs.video_path, configs.input_size, configs.num_frames_sequence)
     result_filename = os.path.join(configs.save_demo_dir, 'results.txt')
     frame_rate = video_loader.video_fps
     if configs.save_demo_output:
