@@ -185,8 +185,8 @@ def parse_configs():
     configs.device = torch.device(configs.raw_device)
     if configs.raw_device != 'cuda':
         configs.gpu_idx = None
-
-    configs.ngpus_per_node = torch.cuda.device_count()
+    else:
+        configs.ngpus_per_node = torch.cuda.device_count()
 
     configs.pin_memory = True
 
