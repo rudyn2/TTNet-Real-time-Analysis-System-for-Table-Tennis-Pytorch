@@ -181,7 +181,9 @@ def parse_configs():
     ####################################################################
     ############## Hardware configurations ############################
     ####################################################################
-    configs.device = torch.device('cpu' if configs.no_cuda else 'cuda')
+    configs.raw_device = 'cpu' if configs.no_cuda else 'cuda'
+    configs.device = torch.device(configs.raw_device)
+    
     configs.ngpus_per_node = torch.cuda.device_count()
 
     configs.pin_memory = True
