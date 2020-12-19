@@ -12,6 +12,7 @@
 import os
 import sys
 from collections import deque
+import pickle
 
 import cv2
 import numpy as np
@@ -97,7 +98,9 @@ def demo(configs):
                 break
             print('Done frame_idx {} - time {:.3f}s'.format(frame_idx, t2 - t1))
 
-
+    if configs.metrics_output:
+        with open(configs.metrics_output, 'wb') as handle:
+            pickle.dump(ball_preds, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
     if configs.output_format == 'video':
         output_video_path = os.path.join(configs.save_demo_dir, 'result.mp4')
